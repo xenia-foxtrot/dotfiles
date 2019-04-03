@@ -118,3 +118,6 @@ zplug load --verbose
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="ls --color"
 alias ll="ls -alh"
+
+# OPAM configuration
+. /home/izzy/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
