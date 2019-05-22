@@ -10,10 +10,11 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/cp", from:oh-my-zsh
-zplug "plugins/tmux", from:oh-my-zsh
 zplug "plugins/node", from:oh-my-zsh
 zplug "plugins/npm", from:oh-my-zsh
 zplug "plugins/python", from:oh-my-zsh
+zplug "plugins/mosh", from:oh-my-zsh
+zplug "plugins/history", from:oh-my-zsh
 
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
@@ -116,7 +117,7 @@ export EDITOR='nvim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-if [["$(uname 2> /dev/null)" != "Linux" ]] 
+if [[ "$(uname 2> /dev/null)" = "Darwin" ]] 
 then
 	# OS X install
 	alias ls="ls -G"
