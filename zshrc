@@ -2,13 +2,12 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/izzy/.oh-my-zsh"
+export ZSH="/home/izzy/.dotfiles/.oh-my-zsh"
 
-source ~/.zplug/init.zsh
+source ~/.dotfiles/.zplug/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
-zplug "zsh-users/zsh-history-subsearch-string"
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/cp", from:oh-my-zsh
 zplug "plugins/tmux", from:oh-my-zsh
@@ -101,6 +100,7 @@ zplug load --verbose
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -116,8 +116,13 @@ zplug load --verbose
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ls="ls --color"
-alias ll="ls -alh"
+if [["$(uname 2> /dev/null)" != "Linux" ]] 
+then
+	# OS X install
+	alias ls="ls -G"
+else
+	# Linux install
+	alias ls="ls --color"
+fi
 
-# OPAM configuration
-. /home/izzy/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+alias ll="ls -alh"
