@@ -1,0 +1,11 @@
+[Unit]
+Description="Checks that a ServiceNotifierHost is registered on DBus"
+Before=tray-pre.target
+
+[Service]
+ExecStart=/home/xenia/.local/share/status_notifier_host_ready.py
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+RequiredBy=tray-pre.target

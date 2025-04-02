@@ -1,0 +1,14 @@
+[Unit]
+Description = Status bar and widgets for hyprland
+ConditionEnvironment=WAYLAND_DISPLAY
+After=wayland-wm@hyprland.desktop.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/hyprpanel
+Restart=on-failure
+RestartSec=5
+Slice=session.slice
+
+[Install]
+WantedBy=wayland-wm@hyprland.desktop.service

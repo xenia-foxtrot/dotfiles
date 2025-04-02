@@ -1,0 +1,6 @@
+[Unit]
+Description = "Precursor to tray.target"
+Before=tray.target
+
+[Install]
+RequiredBy=tray.target

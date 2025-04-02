@@ -1,0 +1,7 @@
+[Unit]
+Description = "Name for when the system tray is available and ready. This is used for autostarting applications which don't check for a system tray to be available periodically."
+Requires=tray-pre.target
+After=tray-pre.target
+
+[Install]
+WantedBy=hyprpanel.service

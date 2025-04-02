@@ -1,0 +1,13 @@
+[Unit]
+Description = "Clipse listener"
+After = wayland-session@hyprland.desktop.target
+ConditionEnvironment = WAYLAND_DISPLAY
+
+[Service]
+Type = simple
+ExecStart = clipse --listen-shell
+Restart = on-failure
+RestartSec = 5
+
+[Install]
+WantedBy = wayland-session@hyprland.desktop.target
