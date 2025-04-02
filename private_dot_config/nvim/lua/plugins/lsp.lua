@@ -24,9 +24,8 @@ return {
 			-- Status updates for LSP
 			-- It's pretty terminal eye candy :3
 			{ "j-hui/fidget.nvim", opts = {} },
-			-- I don't know if I need this since I'm using blink.cmp
-			-- Blink has nvim-cmp compatability
-			-- "hrsh7th/cmp-nvim-lsp"
+
+			-- Better completion menu than built-in, faster than nvim-cmp
 			"saghen/blink.cmp",
 		},
 		config = function()
@@ -100,8 +99,7 @@ return {
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if
 						client
-						and utils.client_supports_method(
-							client,
+						and client:supports_method(
 							vim.lsp.protocol.Methods.textDocument_documentHighlight,
 							event.buf
 						)
@@ -141,8 +139,7 @@ return {
 					-- Keymap to toggle inlay hints if the language server supports it
 					if
 						client
-						and utils.client_supports_method(
-							client,
+						and client:supports_method(
 							vim.lsp.protocol.Methods.textDocument_inlayHint,
 							event.buf
 						)
@@ -187,12 +184,15 @@ return {
 				},
 			})
 
+			local blink = require("blink.cmp")
+			local lspconfig = require("lspconfig")
+			lspconfig["pylsp"].setup({
+				capabilities = blink.get_lsp_capabilities(),
+			})
+
 			-- Setup our capabilities
 			-- Returns a function that can be passed to the `handlers` table in the mason-lspconfig setup
 			local function make_server_handler(server_settings, fn)
-				local blink = require("blink.cmp")
-				local lspconfig = require("lspconfig")
-
 				if type(server_settings) == "function" then
 					fn, server_settings = server_settings, nil
 				end
