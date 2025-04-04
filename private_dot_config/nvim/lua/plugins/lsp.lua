@@ -38,14 +38,16 @@ return {
 
 					---Custom syntax for setting LSP keymaps
 					---@param maps [string | string[], string, function, string][]
-					local function set_lsp_keymaps(maps)
+					local function set_lsp_keymaps(maps, desc)
 						local fun = require("fun")
-						utils.set_keymaps(fun.iter(maps)
+						local keymaps = fun.iter(maps)
 							:map(function(km)
-								km[4] = { buffer = event.buf, desc = "LSP: " .. km[4] }
+								km[4] = { desc = "LSP: " .. km[4] }
 								return km
 							end)
-							:totable())
+							:totable()
+
+						utils.set_keymaps(maps, { buffer = event.buf })
 					end
 
 					set_lsp_keymaps({
