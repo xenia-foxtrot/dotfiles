@@ -6,7 +6,7 @@ config.autocmd()
 
 require("config.lazy")
 
-vim.cmd.colorscheme("terafox")
+vim.cmd.colorscheme("duskfox")
 
 vim.filetype.add({
 	pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
