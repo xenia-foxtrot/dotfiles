@@ -14,7 +14,7 @@ return {
 		"nvim-lualine/lualine.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function()
-			local palette = require("nightfox.palette.terafox").palette
+			local palette = require("nightfox.palette.duskfox").palette
 
 			local empty = require("lualine.component"):extend()
 			function empty:draw(default_highlight)
@@ -33,7 +33,7 @@ return {
 						table.insert(
 							section,
 							pos * 2,
-							{ empty, color = { fg = palette.white.base, bg = palette.bg1 } }
+							{ empty, color = { fg = palette.white.base, bg = palette.bg0 } }
 						)
 					end
 					for id, comp in ipairs(section) do
@@ -57,25 +57,26 @@ return {
 				sections = process_sections({
 					lualine_a = { "mode" },
 					lualine_b = {
-						"branch",
-						"diff",
+						{
+							"filename",
+							file_status = true,
+							path = 4,
+						},
+					},
+					lualine_c = {
+						{ "branch", color = { bg = palette.bg3 } },
+						{ "diff", color = { bg = palette.bg3 } },
 						{
 							"diagnostics",
 							source = { "nvim_lsp" },
 							sections = { "error", "warn" },
+							color = { bg = palette.bg3 },
 						},
 						{
 							"%w",
 							cond = function()
 								return vim.wo.previewwindow
 							end,
-						},
-					},
-					lualine_c = {
-						{
-							"filename",
-							file_status = true,
-							path = 4,
 							color = { bg = palette.bg3 },
 						},
 					},
