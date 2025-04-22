@@ -53,4 +53,7 @@ return {
 
 	-- Easy commenting in normal & visual mode
 	{ "numToStr/Comment.nvim", lazy = false },
+
+	-- Table editor
+	{ "dhruvasagar/vim-table-mode" },
 }
