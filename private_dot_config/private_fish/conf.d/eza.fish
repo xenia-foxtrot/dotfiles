@@ -1,0 +1,10 @@
+set -Ux FISH_EZA_STANDARD_OPTIONS "--color" "--icons" "--hyperlink" 
+set -Ux FISH_EZA_LL_OPTIONS "--long" "--header" "--group-directories-first"
+
+alias l "eza \$FISH_EZA_STANDARD_OPTIONS"
+alias ls "eza \$FISH_EZA_STANDARD_OPTIONS"
+alias ll "eza_git \$FISH_EZA_LL_OPTIONS"
+alias la "eza_git --all \$FISH_EZA_LL_OPTIONS"
+alias le "eza_git --group --extended \$FISH_EZA_LL_OPTIONS"
+alias lea "eza_git --all --group --extended \$FISH_EZA_LL_OPTIONS"
+alias lt "eza_git --tree --level"
