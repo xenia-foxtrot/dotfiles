@@ -1,0 +1,5 @@
+{{- if eq .chezmoi.os "darwin" }}
+# We don't need my systemd services on a mac
+.config/systemd/
+.local/share/status_notifier_host_ready.py
+{{- end }}
