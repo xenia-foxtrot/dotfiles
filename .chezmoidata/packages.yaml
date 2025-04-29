@@ -1,0 +1,15 @@
+packages:
+  darwin:
+    brews:
+      - 'git'
+      - 'eza'
+      - 'ripgrep'
+      - 'lazygit'
+      - 'fd'
+      - 'difftastic'
+      - 'choose-rust'
+      - 'bat'
+      - 'git-delta'
+      - 'sd'
+    casks:
+      - 'font-victor-mono-nerd-font'
