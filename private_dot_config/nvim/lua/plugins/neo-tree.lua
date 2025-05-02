@@ -14,5 +14,15 @@ return {
 	lazy = false,
 	---@module "neo-tree"
 	---@type neotree.Config?
-	opts = {},
+	opts = {
+		filesystem = {
+			filtered_items = {
+				never_show = {
+					".DS_Store",
+				},
+			},
+			-- when true, empty folders will be grouped together
+			group_empty_dirs = true,
+		},
+	},
 }
