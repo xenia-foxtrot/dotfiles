@@ -1,3 +1,5 @@
+---@module "snacks"
+
 local utils = require("utils")
 
 ---@param direction -1 | 1
