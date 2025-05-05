@@ -1,5 +1,16 @@
 local utils = require("utils")
 
+---@param direction -1 | 1
+---@param severity vim.diagnostic.Severity?
+local function diagnostic_goto(direction, severity)
+	severity = severity and vim.diagnostic.severity[severity] or nil
+	return function()
+		local count = vim.v.count1
+		vim.diagnostic.jump({ count = count * direction, severity = severity })
+		print("Moved " .. (direction > 0 and "forward" or "backward") .. " " .. count .. " diagnostics.")
+	end
+end
+
 return {
 	-- Configures the Lua LSP for the neovim config
 	{
@@ -70,15 +81,22 @@ return {
 						},
 						{ "K", vim.lsp.buf.hover, desc = "Hover (LSP)" },
 						{ "gK", vim.lsp.buf.signature_help, desc = "Signature Help (LSP)" },
+						{ "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostic" },
+						{ "]d", diagnostic_goto(1), desc = "Next Diagnostic" },
+						{ "[d", diagnostic_goto(-1), desc = "Previous Diagnostic" },
+						{ "[e", diagnostic_goto(1, "ERROR"), desc = "Next Error" },
+						{ "]e", diagnostic_goto(-1, "ERROR"), desc = "Previous Error" },
+						{ "[w", diagnostic_goto(1, "WARN"), desc = "Next Warning" },
+						{ "]w", diagnostic_goto(-1, "WARN"), desc = "Previous Warning" },
 						-- Fuzzy find all symbols in the current document
 						{
-							"<leader>cd",
+							"<leader>sd",
 							fzflua.lsp_document_symbols,
 							desc = "Document Symbols (LSP)",
 						},
 						-- Fuzzy find all symbols in the entire workspace
 						{
-							"<leader>cw",
+							"<leader>sw",
 							fzflua.lsp_live_workspace_symbols,
 							desc = "[W]orkspace [S]ymbols (LSP)",
 						},
