@@ -105,13 +105,26 @@ return {
 						},
 					},
 					lualine_x = {},
-					lualine_y = { "overseer" },
+					lualine_y = {
+						"overseer",
+						{
+							require("nvim-possession").status,
+							cond = function()
+								return require("nvim-possession").status() ~= nil
+							end,
+						},
+					},
 					lualine_z = {
 						{
 							"%l:%c",
 							color = { bg = palette.white.bright, fg = palette.black.bright },
 						},
-						{ "%p%%/%L", color = { bg = palette.pink.bright } },
+						{
+							function()
+								return " " .. os.date("%R")
+							end,
+							color = { bg = palette.pink.bright },
+						},
 						{ "filetype", color = { bg = palette.cyan.bright } },
 					},
 				}),
