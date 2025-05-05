@@ -1,12 +1,35 @@
+---@module "snacks"
+---@module "bufferline"
+
+---@type LazySpec
 return {
 	{
 		"akinsho/bufferline.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		opts = {
+			---@type bufferline.Options
 			options = {
+				-- Prevent closing buffers from messing up window layout
+				close_command = function(n)
+					Snacks.bufdelete(n)
+				end,
+				right_mouse_command = function(n)
+					Snacks.bufdelete(n)
+				end,
+				always_show_bufferline = false,
+
 				diagnostics = "nvim_lsp",
 				numbers = "buffer_id",
 			},
+		},
+		keys = {
+			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Pin Buffer" },
+			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Close Right Buffer" },
+			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Close Left Buffer" },
+			{ "[b", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev Buffer" },
+			{ "]b", "<Cmd>BufferLineCycleNext<CR>", desc = "Next Buffer" },
+			{ "[B", "<Cmd>BufferLineMovePrev<CR>", desc = "Move Buffer Left" },
+			{ "]B", "<Cmd>BufferLineMoveNext<CR>", desc = "Move Buffer Right" },
 		},
 	},
 
@@ -26,6 +49,7 @@ return {
 			end
 
 			-- Put proper separators and gaps between components in sections
+			--
 			local function process_sections(sections)
 				for name, section in pairs(sections) do
 					local left = name:sub(9, 10) < "x"
