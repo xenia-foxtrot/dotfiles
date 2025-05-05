@@ -46,7 +46,7 @@ local keymaps = {
 	{ "<Esc>", "<cmd>nohlsearch<CR>" },
 
 	-- Open the diagnostic quickfix list
-	{ "<leader>q", vim.diagnostic.setloclist, desc = "Open diagnostic [Q]uickfix list" },
+	{ "<leader>xq", vim.diagnostic.setloclist, desc = "Open diagnostic quickfix list" },
 
 	-- Disable arrow keys is normal mode
 	-- { "<left>", "<cmd>echo 'Trainer: Use h to move! (Remember, this is the leftmost key)'<CR>" },
