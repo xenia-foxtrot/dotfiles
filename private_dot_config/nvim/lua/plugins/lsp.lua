@@ -40,14 +40,16 @@ return {
 
 			-- Better completion menu than built-in, faster than nvim-cmp
 			"saghen/blink.cmp",
+			"SmiteshP/nvim-navic",
 		},
 		config = function()
+			local fzflua = require("fzf-lua")
+			local navic = require("nvim-navic")
+
 			-- This will run whenever an LSP attaches to a buffer.
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = function(event)
-					local fzflua = require("fzf-lua")
-
 					---@type KeymapSpec[]
 					local specs = {
 						-- Jump to the definition of the word underneath the cursor
@@ -211,6 +213,17 @@ return {
 						utils.set_keymaps({
 							{ "<leader>th", toggle_inlay, desc = "[T]oggle Inlay [H]ints" },
 						})
+					end
+
+					-- Configure navic
+					if
+						client
+						and client:supports_method(
+							vim.lsp.protocol.Methods.textDocument_documentSymbol,
+							event.buf
+						)
+					then
+						navic.attach(client, event.buf)
 					end
 				end,
 			})
