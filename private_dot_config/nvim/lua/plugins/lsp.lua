@@ -42,11 +42,18 @@ return {
 
 			-- Better completion menu than built-in, faster than nvim-cmp
 			"saghen/blink.cmp",
-			"SmiteshP/nvim-navic",
+			{
+				"SmiteshP/nvim-navbuddy",
+				dependencies = {
+					"SmiteshP/nvim-navic",
+					"MunifTanjim/nui.nvim",
+				},
+			},
 		},
 		config = function()
 			local fzflua = require("fzf-lua")
 			local navic = require("nvim-navic")
+			local navbuddy = require("nvim-navbuddy")
 
 			-- This will run whenever an LSP attaches to a buffer.
 			vim.api.nvim_create_autocmd("LspAttach", {
@@ -226,6 +233,10 @@ return {
 						)
 					then
 						navic.attach(client, event.buf)
+						navbuddy.attach(client, event.buf)
+						utils.set_keymaps({
+							{ "<leader>n", navbuddy.open, desc = "Open Navbuddy" },
+						})
 					end
 				end,
 			})
