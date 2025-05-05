@@ -79,7 +79,7 @@ return {
 						-- Fuzzy find all symbols in the entire workspace
 						{
 							"<leader>cw",
-							fzflua.lsp_workspace_symbols,
+							fzflua.lsp_live_workspace_symbols,
 							desc = "[W]orkspace [S]ymbols (LSP)",
 						},
 						-- Rename the symbol under the cursor
