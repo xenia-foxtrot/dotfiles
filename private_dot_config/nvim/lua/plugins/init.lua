@@ -1,9 +1,6 @@
 -- Miscellanous plugins
 
 return {
-	-- Luarocks packages
-	{ "lua-stdlib/lua-stdlib" },
-
 	-- Themes
 	{ "EdenEast/nightfox.nvim" },
 	{

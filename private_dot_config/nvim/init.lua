@@ -1,13 +1,13 @@
-local config = require("config")
-config.g()
-config.opt()
-config.keymap()
-config.autocmd()
+require("options")
+require("keymaps")
 
-require("config.lazy")
+require("lazy-bootstrap")
+require("autocmd")
 
 vim.cmd.colorscheme("duskfox")
 
 vim.filetype.add({
 	pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
 })
+
+vim.lsp.enable("lua_ls")
