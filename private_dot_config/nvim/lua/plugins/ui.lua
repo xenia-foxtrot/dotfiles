@@ -133,6 +133,7 @@ return {
 		end,
 	},
 
+	-- Shows location in the top right corner
 	{
 		"b0o/incline.nvim",
 		dependencies = {
