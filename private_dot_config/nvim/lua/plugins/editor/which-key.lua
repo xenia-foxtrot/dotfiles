@@ -16,6 +16,7 @@ return {
 	},
 	---@type wk.Opts
 	opts = {
+		preset = "modern",
 		delay = 0,
 		icons = {
 			-- I always use nerd font, so set mappings to true and use default
