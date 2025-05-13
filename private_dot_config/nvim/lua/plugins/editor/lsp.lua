@@ -14,6 +14,9 @@ return {
 			},
 		},
 	},
+	-- Status updates for LSP
+	-- It's pretty terminal eye candy :3
+	{ "j-hui/fidget.nvim", opts = {} },
 	-- Provides configurations for lsp servers so we don't have to define them all in lsp
 	"neovim/nvim-lspconfig",
 	{
@@ -24,9 +27,6 @@ return {
 			"MunifTanjim/nui.nvim",
 		},
 	},
-	-- Status updates for LSP
-	-- It's pretty terminal eye candy :3
-	{ "j-hui/fidget.nvim", opts = {} },
 	-- Automatically install LSP servers
 	{
 		"williamboman/mason.nvim",
@@ -42,6 +42,7 @@ return {
 		},
 		opts = {},
 	},
+	"mason-org/mason-lspconfig.nvim",
 	-- Super fast autocomplete
 	{
 		"saghen/blink.cmp",
