@@ -16,7 +16,14 @@ return {
 	},
 	-- Status updates for LSP
 	-- It's pretty terminal eye candy :3
-	{ "j-hui/fidget.nvim", opts = {} },
+	{
+		"j-hui/fidget.nvim",
+		opts = {
+			notification = {
+				override_vim_notify = true,
+			},
+		},
+	},
 	-- Provides configurations for lsp servers so we don't have to define them all in lsp
 	"neovim/nvim-lspconfig",
 	{
